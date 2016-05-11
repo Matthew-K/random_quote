@@ -55,6 +55,7 @@ var view = {
 	init: function(){
 		view.renderQuote();
 		view.setGenerateButton();
+		view.setTweetButton();
 	},
 
 	// displays quote and author on screen, 
@@ -63,7 +64,7 @@ var view = {
 		$(document).ajaxStop(function() {
 			var data = controller.getData();
 			$("#quote").html("<p>" + data.quote +"</p>");
-			$("#author").html("<p>" + "- " + data.author + "</p>" );	
+			$("#author").html("<p>" + "-" + data.author + "</p>" );	
 		});
 	},
 
@@ -72,7 +73,15 @@ var view = {
 		$("#generate").on("click", function(){
 			controller.getQuote();
 		});
-	}	
+	},
+
+	setTweetButton: function(){
+		$("#tweet").on("click", function(){
+			var text = $("#quote").text() + " " + " " + $("#author").text();
+			text = encodeURI(text);
+			window.open("https://twitter.com/intent/tweet?text=" + text + "&hashtags=randomQuote",'_blank');
+		});
+	}
 
 };	// end of view
 
