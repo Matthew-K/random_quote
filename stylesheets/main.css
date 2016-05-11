@@ -32,4 +32,8 @@
 	#author{
 		text-align: right;
 	}
+
+	#display{
+		margin: 125px auto;
+	}
 }

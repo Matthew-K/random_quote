@@ -66,14 +66,14 @@ var view = {
 			var data = controller.getData();
 			$("#quote").html("<p>" + data.quote +"</p>");
 			$("#author").html("<p>" + "-" + data.author + "</p>" );
-			$("#randomQuote").fadeIn(800);
+			$("#randomQuote").animate({'opacity': 1}, 800);
 		});
 	},
 
 	// creates click handler for button
 	setGenerateButton: function(){
 		$("#generate").on("click", function(){
-			$("#randomQuote").fadeOut(800, function(){
+			$("#randomQuote").animate({'opacity': 0}, 800, function(){
 				controller.getQuote();
 			});
 		});
@@ -92,5 +92,5 @@ var view = {
 
 // initializes app
 controller.init();
-
+$(".buttons").animate(1000);
 }); // end of $(document).ready
