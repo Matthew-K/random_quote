@@ -39,6 +39,7 @@ controller = {
 		    },
 			url: 'https://andruxnet-random-famous-quotes.p.mashape.com/',
 			success: function(info){
+				console.log("called");
 				var data = JSON.parse(info);	
 				controller.setQuoteData(data);
 			}
@@ -64,14 +65,17 @@ var view = {
 		$(document).ajaxStop(function() {
 			var data = controller.getData();
 			$("#quote").html("<p>" + data.quote +"</p>");
-			$("#author").html("<p>" + "-" + data.author + "</p>" );	
+			$("#author").html("<p>" + "-" + data.author + "</p>" );
+			$("#randomQuote").fadeIn(800);
 		});
 	},
 
 	// creates click handler for button
 	setGenerateButton: function(){
 		$("#generate").on("click", function(){
-			controller.getQuote();
+			$("#randomQuote").fadeOut(800, function(){
+				controller.getQuote();
+			});
 		});
 	},
 
