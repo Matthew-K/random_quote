@@ -7,25 +7,29 @@ quoteData = {
   // "quote": "Once you eliminate the impossible, whatever remains, no matter how improbable, must be the truth.",
   // "author": "Sherlock Holmes",
   // "category": "Famous",
-  // "cat": ""
 };
-
 
 
 /*==========   CONTROLLER   ==========*/
 controller = {
 
+	// initializes app
 	init: function(){
 		controller.getQuote();
-		view.generate();
+		view.init();
 	},
 
+	// sets quoteData to be whatever info parameter is
 	setQuoteData: function(info){
 		quoteData = info;
 	},
 
-	currentData: quoteData,
+	// returns current quoteData
+	getData: function(){
+		return quoteData;
+	},
 
+	// makes ajax call
 	getQuote: function(){
 		$.ajax({
 		    headers: {
@@ -35,30 +39,45 @@ controller = {
 		    },
 			url: 'https://andruxnet-random-famous-quotes.p.mashape.com/',
 			success: function(info){
-				console.log(info);
-				controller.setQuoteData(info);
+				var data = JSON.parse(info);	
+				controller.setQuoteData(data);
 			}
 		});
 	}
-};
 
+}; // end of controller
 
 
 /*==========   View   ==========*/
-
 var view = {
-	generate: function(){
+
+	// runs when app initialized
+	init: function(){
+		view.renderQuote();
+		view.setGenerateButton();
+	},
+
+	// displays quote and author on screen, 
+	// once called, will run after each ajax call
+	renderQuote: function(){
+		$(document).ajaxStop(function() {
+			var data = controller.getData();
+			$("#quote").text(data.quote);
+			$("#author").text("- " + data.author);	
+		});
+	},
+
+	// creates click handler for button
+	setGenerateButton: function(){
 		$("#generate").on("click", function(){
 			controller.getQuote();
 		});
 	}	
 
+};	// end of view
 
 
-};
-
-
-
+// initializes app
 controller.init();
 
-}); // end of document.ready
+}); // end of $(document).ready
