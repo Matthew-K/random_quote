@@ -62,8 +62,8 @@ var view = {
 	renderQuote: function(){
 		$(document).ajaxStop(function() {
 			var data = controller.getData();
-			$("#quote").text(data.quote);
-			$("#author").text("- " + data.author);	
+			$("#quote").html("<p>" + data.quote +"</p>");
+			$("#author").html("<p>" + "- " + data.author + "</p>" );	
 		});
 	},
 

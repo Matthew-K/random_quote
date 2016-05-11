@@ -1,6 +1,35 @@
-#randomQuote{
-	width: 500px;
+#display{
+	text-align: center;*/
+	display: block;
+	margin: 175px auto;
 	padding: 15px;
-	border: 1px solid #999;
-	margin-bottom: 10px;
+}
+
+#quote{
+	font-size: 22px;
+}
+
+#author{
+	font-size: 14px;
+}
+
+.buttons{
+	margin-top: 50px;
+}
+.buttons span{
+	font-size: 14px;
+}
+
+#generate{
+	margin-right: 5px;
+}
+
+
+@media only screen and (max-width: 425px) {
+	#quote{
+		text-align: left;
+	}
+	#author{
+		text-align: right;
+	}
 }
