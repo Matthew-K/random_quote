@@ -33,11 +33,11 @@ controller = {
 	getQuote: function(){
 		$.ajax({
 		    headers: {
-		      "X-Mashape-Key": "rN5svBBLrXmshBjyfGqbrToUTAmMp1O6xFujsnuNkyvK1rG049",
+		      "X-Mashape-Key": "",
 		      "Content-Type": "application/x-www-form-urlencoded",
 		      "Accept": "application/json"
 		    },
-			url: 'https://andruxnet-random-famous-quotes.p.mashape.com/',
+			url: '',
 			success: function(info){
 				console.log("called");
 				var data = JSON.parse(info);	
